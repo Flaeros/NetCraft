@@ -1,8 +1,11 @@
 package com.netcraft.controller;
 
+import com.netcraft.model.Attribute;
 import com.netcraft.model.NCObjectORM;
-import com.netcraft.util.hibernate.HibernateFactory;
-import com.netcraft.util.hibernate.NCObjectDAO;
+import com.netcraft.util.hibernate.Attribute.AttributeDAO;
+import com.netcraft.util.hibernate.Attribute.AttributeFactory;
+import com.netcraft.util.hibernate.NCObjectORM.NCObjectORMFactory;
+import com.netcraft.util.hibernate.NCObjectORM.NCObjectDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,19 +26,19 @@ public class TestController {
     public ModelAndView test() throws SQLException {
         ModelAndView modelAndView = new ModelAndView("testpage");
 
-        NCObjectDAO objectDAO  = HibernateFactory.getInstance().getNCObjectDAO();
+        NCObjectDAO objectDAO  = NCObjectORMFactory.getInstance().getNCObjectDAO();
+        AttributeDAO attributeDAO  = AttributeFactory.getInstance().getAttributeDAO();
+        System.out.println("[TestController] objectDAO = " + objectDAO);
+        System.out.println("[TestController] attributeDAO = " + attributeDAO);
 
-        //NCObjectORM obj1 = new NCObjectORM();
-        //obj1.setName("SecondObject");
-        //objectDAO.addObject(obj1);
+        NCObjectORM object = objectDAO.getObject(1);
+        Attribute attribute = attributeDAO.getAttribute(1);
 
-        NCObjectORM object1 = objectDAO.getObjectById(1);
-        System.out.println("object name = " + object1.getName());
-        System.out.println("object id = " + object1.getId());
+        System.out.println("[TestController] object = " + object.getName());
+        System.out.println("[TestController] attribute = " + attribute.getName());
 
-        modelAndView.addObject("object1", object1);
-        //modelAndView.addObject("name", obj1.getName());
-        modelAndView.addObject("test", "OLOLO");
+        modelAndView.addObject("object", object);
+        modelAndView.addObject("attribute", attribute);
 
         return modelAndView;
     }

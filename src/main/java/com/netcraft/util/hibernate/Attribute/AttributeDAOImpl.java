@@ -1,79 +1,75 @@
-package com.netcraft.util.hibernate;
+package com.netcraft.util.hibernate.Attribute;
 
-import com.netcraft.model.NCObjectORM;
+import com.netcraft.model.Attribute;
+import com.netcraft.util.hibernate.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.sql.SQLException;
 
-public class NCObjectDAOImpl implements NCObjectDAO {
+public class AttributeDAOImpl implements AttributeDAO {
 
     @Override
-    public void addObject(NCObjectORM object) throws SQLException {
+    public void addAttribute(Attribute attribute) throws SQLException {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(object);
+            session.save(attribute);
             session.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("addObject error " +e.toString());
-            //e.printStackTrace();
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-    }
-
-    @Override
-    public void updateObject(NCObjectORM object) throws SQLException {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.update(object);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("error " + e.toString());
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-    }
-
-    @Override
-    public NCObjectORM getObjectById(long id) throws SQLException {
-        Session session = null;
-        NCObjectORM object = null;
-        try {
-            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-            System.out.println("sessionFactory = " + sessionFactory);
-            session = sessionFactory.openSession();
-            object = (NCObjectORM) session.load(NCObjectORM.class, id);
-            System.out.println("impl object = " + object.getName());
-        } catch (Exception e) {
-            System.out.println("getObjectById error " +e.toString());
             e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
             }
         }
-        return object;
     }
 
     @Override
-    public void deleteStudent(NCObjectORM object) throws SQLException {
+    public void updateAttribute(Attribute attribute) throws SQLException {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(object);
+            session.update(attribute);
             session.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("error " + e.toString());
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public Attribute getAttribute(long attr_id) throws SQLException {
+        Session session = null;
+        Attribute attribute = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            attribute = (Attribute) session.load(Attribute.class, attr_id);
+            System.out.println("[AttributeDAOImpl] attribute = " + attribute.getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return attribute;
+    }
+
+    @Override
+    public void deleteAttribute(Attribute attribute) throws SQLException {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.delete(attribute);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

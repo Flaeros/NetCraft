@@ -1,15 +1,12 @@
-package com.netcraft.util.hibernate;
+package com.netcraft.util.hibernate.NCObjectORM;
 
-/**
- * Created by Flaeros on 14.05.2015.
- */
-public class HibernateFactory {
+public class NCObjectORMFactory {
     private static NCObjectDAO objectDAO = null;
-    private static HibernateFactory instance = null;
+    private static NCObjectORMFactory instance = null;
 
-    public static synchronized HibernateFactory getInstance(){
+    public static synchronized NCObjectORMFactory getInstance(){
         if (instance == null){
-            instance = new HibernateFactory();
+            instance = new NCObjectORMFactory();
         }
         return instance;
     }

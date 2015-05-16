@@ -12,8 +12,7 @@
 </head>
 <body>
   <h1>Flaeros here.</h1>
-  <h3>My first object: ${object1.id} ${object1.name}</h3>
-  <h4>test: ${test}</h4>
-  <h4>headerMsg: ${headerMsg}</h4>
+  <h3>Object Test: ${object.object_id} ${object.name} ${object.parent_id} ${object.object_type_id}</h3>
+  <h3>Attribute Test: ${attribute.attr_id} ${attribute.name} ${attribute.attr_type_id} </h3>
 </body>
 </html>
