@@ -1,19 +1,22 @@
 package com.netcraft.model;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "objects")
-public class NCObjectORM {
+public class HObject {
     @Id
+    @Column
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     private long object_id;
 
+    @Column
     private String name;
+    @Column
     private long parent_id;
+    @Column
     private long object_type_id;
 
     public long getObject_id() {

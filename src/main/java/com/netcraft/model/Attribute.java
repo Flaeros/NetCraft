@@ -1,21 +1,19 @@
 package com.netcraft.model;
 
 import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "attributes")
-public class Attribute {
+public class Attribute{
     @Id
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @Column
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long attr_id;
 
+    @Column
     private long attr_type_id;
+    @Column
     private String name;
 
     public String getName() {

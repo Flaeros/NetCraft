@@ -1,4 +1,4 @@
-package com.netcraft.util.hibernate.Attribute;
+package com.netcraft.hibernate.Attribute.DAO;
 
 import com.netcraft.model.Attribute;
 
