@@ -1,4 +1,4 @@
-package com.netcraft.hibernate.Attribute.DAO;
+package com.netcraft.hibernate.DAO;
 
 import com.netcraft.model.Attribute;
 import org.hibernate.SessionFactory;

@@ -1,7 +1,7 @@
-package com.netcraft.hibernate.HObject.service;
+package com.netcraft.hibernate.service;
 
 import com.netcraft.model.HObject;
-import com.netcraft.hibernate.HObject.DAO.ObjectDAO;
+import com.netcraft.hibernate.DAO.ObjectDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

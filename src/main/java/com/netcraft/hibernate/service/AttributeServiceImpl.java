@@ -1,7 +1,7 @@
-package com.netcraft.hibernate.Attribute.service;
+package com.netcraft.hibernate.service;
 
 import com.netcraft.model.Attribute;
-import com.netcraft.hibernate.Attribute.DAO.AttributeDAO;
+import com.netcraft.hibernate.DAO.AttributeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

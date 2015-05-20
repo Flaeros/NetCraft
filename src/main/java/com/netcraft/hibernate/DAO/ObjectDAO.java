@@ -1,4 +1,4 @@
-package com.netcraft.hibernate.HObject.DAO;
+package com.netcraft.hibernate.DAO;
 
 import com.netcraft.model.HObject;
 import java.sql.SQLException;

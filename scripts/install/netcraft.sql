@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `attributes` (
   `attr_id` int(10) NOT NULL,
   `attr_type_id` int(10) NOT NULL,
-  `name` int(10) NOT NULL,
+  `name` varchar(300) NOT NULL,
   PRIMARY KEY (`attr_id`),
   UNIQUE KEY `attr_id_2` (`attr_id`),
   KEY `attr_id` (`attr_id`),

@@ -41,11 +41,14 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="AttributeDAO" class="com.netcraft.hibernate.Attribute.DAO.AttributeDAOImpl"/>
-    <bean id="AttributeService" class="com.netcraft.hibernate.Attribute.service.AttributeServiceImpl"/>
+    <bean id="AttributeDAO" class="com.netcraft.hibernate.DAO.AttributeDAOImpl"/>
+    <bean id="AttributeService" class="com.netcraft.hibernate.service.AttributeServiceImpl"/>
 
-    <bean id="ObjectDAO" class="com.netcraft.hibernate.HObject.DAO.ObjectDAOImpl"/>
-    <bean id="ObjectService" class="com.netcraft.hibernate.HObject.service.ObjectServiceImpl"/>
+    <bean id="ObjectDAO" class="com.netcraft.hibernate.DAO.ObjectDAOImpl"/>
+    <bean id="ObjectService" class="com.netcraft.hibernate.service.ObjectServiceImpl"/>
+
+    <bean id="ObjectTypeDAO" class="com.netcraft.hibernate.DAO.ObjectTypeDAOImpl"/>
+    <bean id="ObjectTypeService" class="com.netcraft.hibernate.service.ObjectTypeServiceImpl"/>
 
     <bean id="viewResolvler"
          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
