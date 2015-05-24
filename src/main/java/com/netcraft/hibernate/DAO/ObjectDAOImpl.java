@@ -1,6 +1,6 @@
 package com.netcraft.hibernate.DAO;
 
-import com.netcraft.model.HObject;
+import com.netcraft.model.NCObject;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,23 +13,19 @@ public class ObjectDAOImpl implements ObjectDAO {
     @Autowired
     SessionFactory sessionFactory;
 
-    @Override
-    public void addObject(HObject HObject) throws SQLException {
-        sessionFactory.getCurrentSession().save(HObject);
+    public void addObject(NCObject NCObject) throws SQLException {
+        sessionFactory.getCurrentSession().save(NCObject);
     }
 
-    @Override
-    public void updateObject(HObject HObject) throws SQLException {
-        sessionFactory.getCurrentSession().update(HObject);
+    public void updateObject(NCObject NCObject) throws SQLException {
+        sessionFactory.getCurrentSession().update(NCObject);
     }
 
-    @Override
-    public HObject getObject(long object_id) throws SQLException {
-        return (HObject)sessionFactory.getCurrentSession().get(HObject.class, object_id);
+    public NCObject getObject(long object_id) throws SQLException {
+        return (NCObject)sessionFactory.getCurrentSession().get(NCObject.class, object_id);
     }
 
-    @Override
-    public void deleteStudent(HObject HObject) throws SQLException {
-        sessionFactory.getCurrentSession().delete(HObject);
+    public void deleteObject(NCObject NCObject) throws SQLException {
+        sessionFactory.getCurrentSession().delete(NCObject);
     }
 }

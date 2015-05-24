@@ -22,6 +22,9 @@ public class Attribute implements Serializable{
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "attributes")
     private Set<ObjectType> objectTypes = new HashSet<ObjectType>(0);
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="attribute")
+    private Set<Param> params;
+
     public Attribute() {
     }
 
@@ -56,8 +59,14 @@ public class Attribute implements Serializable{
     public Set<ObjectType> getObjectTypes() {
         return this.objectTypes;
     }
-
     public void setObjectTypes(Set<ObjectType> objectTypes) {
         this.objectTypes = objectTypes;
+    }
+
+    public Set<Param> getParams() {
+        return params;
+    }
+    public void setParams(Set<Param> params) {
+        this.params = params;
     }
 }

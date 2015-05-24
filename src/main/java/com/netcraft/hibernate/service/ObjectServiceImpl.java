@@ -1,6 +1,6 @@
 package com.netcraft.hibernate.service;
 
-import com.netcraft.model.HObject;
+import com.netcraft.model.NCObject;
 import com.netcraft.hibernate.DAO.ObjectDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,27 +14,23 @@ public class ObjectServiceImpl implements ObjectService {
     @Autowired
     ObjectDAO objectDAO;
 
-    @Override
     @Transactional
-    public void addObject(HObject HObject) throws SQLException {
-        objectDAO.addObject(HObject);
+    public void addObject(NCObject NCObject) throws SQLException {
+        objectDAO.addObject(NCObject);
     }
 
-    @Override
     @Transactional
-    public void updateObject(HObject HObject) throws SQLException {
-        objectDAO.updateObject(HObject);
+    public void updateObject(NCObject NCObject) throws SQLException {
+        objectDAO.updateObject(NCObject);
     }
 
-    @Override
     @Transactional
-    public HObject getObject(long object_id) throws SQLException {
+    public NCObject getObject(long object_id) throws SQLException {
         return objectDAO.getObject(object_id);
     }
 
-    @Override
     @Transactional
-    public void deleteStudent(HObject HObject) throws SQLException {
-        objectDAO.deleteStudent(HObject);
+    public void deleteObject(NCObject NCObject) throws SQLException {
+        objectDAO.deleteObject(NCObject);
     }
 }

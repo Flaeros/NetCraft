@@ -1,11 +1,13 @@
 package com.netcraft.controller;
 
 import com.netcraft.hibernate.service.ObjectTypeService;
+import com.netcraft.hibernate.service.ParamService;
 import com.netcraft.model.Attribute;
-import com.netcraft.model.HObject;
+import com.netcraft.model.NCObject;
 import com.netcraft.hibernate.service.AttributeService;
 import com.netcraft.hibernate.service.ObjectService;
 import com.netcraft.model.ObjectType;
+import com.netcraft.model.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -25,6 +26,8 @@ public class TestController {
     private ObjectService objectService;
     @Autowired
     private ObjectTypeService objectTypeService;
+    @Autowired
+    private ParamService paramService;
 
     @ModelAttribute
     public void addingCommonObjects(Model model1){
@@ -38,17 +41,21 @@ public class TestController {
 
         System.out.println("[TestController] objectService = " + objectService);
         System.out.println("[TestController] attributeService = " + attributeService);
+        System.out.println("[TestController] paramService = " + paramService);
 
-        HObject object = objectService.getObject(1);
+        NCObject object = objectService.getObject(1);
         Attribute attribute = attributeService.getAttribute(1);
         ObjectType objectType = objectTypeService.getObjectType(1);
+        Param param = paramService.getParam(attribute.getAttr_id(), object.getObject_id());
 
         System.out.println("[TestController] object = " + object.getName());
         System.out.println("[TestController] attribute = " + attribute.getName());
+        System.out.println("[TestController] param = " + param.getValue());
 
         modelAndView.addObject("object", object);
         modelAndView.addObject("objectType", objectType);
         modelAndView.addObject("attribute", attribute);
+        modelAndView.addObject("param", param);
 
         Set<Attribute> attributes = objectType.getAttributes();
 

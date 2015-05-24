@@ -2,10 +2,11 @@ package com.netcraft.model;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "objects")
-public class HObject {
+public class NCObject {
     @Id
     @Column
     @GeneratedValue(generator="increment")
@@ -18,6 +19,9 @@ public class HObject {
     private long parent_id;
     @Column
     private long object_type_id;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="ncObject")
+    private Set<Param> params;
 
     public long getObject_id() {
         return object_id;
@@ -45,5 +49,12 @@ public class HObject {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Param> getParams() {
+        return params;
+    }
+    public void setParams(Set<Param> params) {
+        this.params = params;
     }
 }
