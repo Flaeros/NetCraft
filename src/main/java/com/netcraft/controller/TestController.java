@@ -1,13 +1,7 @@
 package com.netcraft.controller;
 
-import com.netcraft.hibernate.service.ObjectTypeService;
-import com.netcraft.hibernate.service.ParamService;
-import com.netcraft.model.Attribute;
-import com.netcraft.model.NCObject;
-import com.netcraft.hibernate.service.AttributeService;
-import com.netcraft.hibernate.service.ObjectService;
-import com.netcraft.model.ObjectType;
-import com.netcraft.model.Param;
+import com.netcraft.hibernate.service.*;
+import com.netcraft.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +22,8 @@ public class TestController {
     private ObjectTypeService objectTypeService;
     @Autowired
     private ParamService paramService;
+    @Autowired
+    private ReferenceService referenceService;
 
     @ModelAttribute
     public void addingCommonObjects(Model model1){
@@ -42,23 +38,24 @@ public class TestController {
         System.out.println("[TestController] objectService = " + objectService);
         System.out.println("[TestController] attributeService = " + attributeService);
         System.out.println("[TestController] paramService = " + paramService);
+        System.out.println("[TestController] referenceService = " + referenceService);
 
         NCObject object = objectService.getObject(1);
         Attribute attribute = attributeService.getAttribute(1);
         ObjectType objectType = objectTypeService.getObjectType(1);
         Param param = paramService.getParam(attribute.getAttr_id(), object.getObject_id());
+        Reference reference = referenceService.getReference(attribute.getAttr_id(), object.getObject_id());
 
         System.out.println("[TestController] object = " + object.getName());
         System.out.println("[TestController] attribute = " + attribute.getName());
         System.out.println("[TestController] param = " + param.getValue());
+        System.out.println("[TestController] reference = " + reference.getReference());
 
         modelAndView.addObject("object", object);
         modelAndView.addObject("objectType", objectType);
         modelAndView.addObject("attribute", attribute);
-        modelAndView.addObject("param", param);
-
-        Set<Attribute> attributes = objectType.getAttributes();
-
+        modelAndView.addObject("param2", param);
+        modelAndView.addObject("reference", reference);
 
         System.out.println("[TestController] DONE");
 

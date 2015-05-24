@@ -7,5 +7,6 @@
         <mapping class="com.netcraft.model.Attribute" />
         <mapping class="com.netcraft.model.ObjectType" />
         <mapping class="com.netcraft.model.Param" />
+        <mapping class="com.netcraft.model.Reference" />
     </session-factory>
 </hibernate-configuration>

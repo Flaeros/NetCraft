@@ -23,6 +23,10 @@ public class NCObject {
     @OneToMany(fetch = FetchType.EAGER, mappedBy="ncObject")
     private Set<Param> params;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="ncObject")
+    private Set<Reference> references;
+
+
     public long getObject_id() {
         return object_id;
     }
@@ -56,5 +60,12 @@ public class NCObject {
     }
     public void setParams(Set<Param> params) {
         this.params = params;
+    }
+
+    public Set<Reference> getReferences() {
+        return references;
+    }
+    public void setReferences(Set<Reference> references) {
+        this.references = references;
     }
 }

@@ -4,7 +4,7 @@
 <head>
     <title>Hello test Hibernate&Spring!</title>
 </head>
-<body>
+<p>
   <h1>Flaeros here.</h1>
   <h3>Object Test: ${object.object_id} ${object.name} ${object.parent_id} ${object.object_type_id} </h3>
   <h3>Attribute Test: ${attribute.attr_id} ${attribute.name} ${attribute.attr_type_id} </h3>
@@ -21,6 +21,9 @@
     </c:forEach>
   </p>
 
+  <h3>Param Test: ${param2.value} </h3>
+  <h3>Reference Test: ${reference.reference} </h3>
+
   <p>
   <h3>Param Zero Test:  </h3>
 
@@ -28,7 +31,13 @@
     ${param1.value}
   </c:forEach>
 
-  <h3>Param Test: ${param.value} ${param.attribute.name}</h3>
+  <h3>Reference Zero Test:  </h3>
+
+  <c:forEach items="${object.references}" var="reference1">
+    ${reference1.reference}
+  </c:forEach>
+</p>
+
 
 </body>
 </html>

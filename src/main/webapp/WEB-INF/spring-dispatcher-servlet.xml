@@ -53,6 +53,9 @@
     <bean id="ParamDAO" class="com.netcraft.hibernate.DAO.ParamDAOImpl"/>
     <bean id="ParamService" class="com.netcraft.hibernate.service.ParamServiceImpl"/>
 
+    <bean id="ReferenceDAO" class="com.netcraft.hibernate.DAO.ReferenceDAOImpl"/>
+    <bean id="ReferenceService" class="com.netcraft.hibernate.service.ReferenceServiceImpl"/>
+
     <bean id="viewResolvler"
          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
           <property name="prefix">

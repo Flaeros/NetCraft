@@ -25,6 +25,9 @@ public class Attribute implements Serializable{
     @OneToMany(fetch = FetchType.EAGER, mappedBy="attribute")
     private Set<Param> params;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="reference")
+    private Set<Reference> references;
+
     public Attribute() {
     }
 
@@ -68,5 +71,12 @@ public class Attribute implements Serializable{
     }
     public void setParams(Set<Param> params) {
         this.params = params;
+    }
+
+    public Set<Reference> getReferences() {
+        return references;
+    }
+    public void setReferences(Set<Reference> references) {
+        this.references = references;
     }
 }
