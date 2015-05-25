@@ -13,22 +13,18 @@ public class AttributeDAOImpl implements AttributeDAO {
     @Autowired
     SessionFactory sessionFactory;
 
-    @Override
     public void addAttribute(Attribute attribute) throws SQLException {
         sessionFactory.getCurrentSession().save(attribute);
     }
 
-    @Override
     public void updateAttribute(Attribute attribute) throws SQLException {
         sessionFactory.getCurrentSession().update(attribute);
     }
 
-    @Override
     public Attribute getAttribute(long attr_id) throws SQLException {
         return (Attribute)sessionFactory.getCurrentSession().get(Attribute.class, attr_id);
     }
 
-    @Override
     public void deleteAttribute(Attribute attribute) throws SQLException {
         sessionFactory.getCurrentSession().delete(attribute);
     }

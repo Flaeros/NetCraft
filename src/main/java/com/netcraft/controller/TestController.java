@@ -24,6 +24,8 @@ public class TestController {
     private ParamService paramService;
     @Autowired
     private ReferenceService referenceService;
+    @Autowired
+    private AttrGroupService attrGroupService;
 
     @ModelAttribute
     public void addingCommonObjects(Model model1){
@@ -45,17 +47,20 @@ public class TestController {
         ObjectType objectType = objectTypeService.getObjectType(1);
         Param param = paramService.getParam(attribute.getAttr_id(), object.getObject_id());
         Reference reference = referenceService.getReference(attribute.getAttr_id(), object.getObject_id());
+        AttrGroup attrGroup = attrGroupService.getAttrGroup(1);
 
         System.out.println("[TestController] object = " + object.getName());
         System.out.println("[TestController] attribute = " + attribute.getName());
         System.out.println("[TestController] param = " + param.getValue());
         System.out.println("[TestController] reference = " + reference.getReference());
+        System.out.println("[TestController] attrGroup = " + attrGroup.getName());
 
         modelAndView.addObject("object", object);
         modelAndView.addObject("objectType", objectType);
         modelAndView.addObject("attribute", attribute);
         modelAndView.addObject("param2", param);
         modelAndView.addObject("reference", reference);
+        modelAndView.addObject("attrGroup", attrGroup);
 
         System.out.println("[TestController] DONE");
 

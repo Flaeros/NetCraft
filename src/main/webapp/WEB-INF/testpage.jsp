@@ -23,6 +23,7 @@
 
   <h3>Param Test: ${param2.value} </h3>
   <h3>Reference Test: ${reference.reference} </h3>
+  <h3>AttrGroup Test: ${attrGroup.attr_group_id} ${attrGroup.name} ${attrGroup.tab}</h3>
 
   <p>
   <h3>Param Zero Test:  </h3>

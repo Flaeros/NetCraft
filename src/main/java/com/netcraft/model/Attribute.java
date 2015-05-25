@@ -18,6 +18,9 @@ public class Attribute implements Serializable{
     private long attr_type_id;
     @Column
     private String name;
+    @Column
+    private long attr_group_id;
+
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "attributes")
     private Set<ObjectType> objectTypes = new HashSet<ObjectType>(0);
@@ -25,7 +28,7 @@ public class Attribute implements Serializable{
     @OneToMany(fetch = FetchType.EAGER, mappedBy="attribute")
     private Set<Param> params;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="reference")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="attribute")
     private Set<Reference> references;
 
     public Attribute() {
@@ -57,6 +60,14 @@ public class Attribute implements Serializable{
     }
     public void setAttr_id(long attr_id) {
         this.attr_id = attr_id;
+    }
+
+    public long getAttr_group_id() {
+        return attr_group_id;
+    }
+
+    public void setAttr_group_id(long attr_group_id) {
+        this.attr_group_id = attr_group_id;
     }
 
     public Set<ObjectType> getObjectTypes() {
