@@ -1,47 +1,27 @@
--- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: May 24, 2015 at 10:52 AM
--- Server version: 5.5.25
--- PHP Version: 5.3.13
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `netcraft`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `attributes`
---
-
 CREATE TABLE IF NOT EXISTS `attributes` (
   `attr_id` int(10) NOT NULL,
   `attr_type_id` int(10) NOT NULL,
+  `attr_group_id` int(10) DEFAULT NULL,
   `name` varchar(300) NOT NULL,
   PRIMARY KEY (`attr_id`),
-  UNIQUE KEY `attr_id_2` (`attr_id`),
-  KEY `attr_id` (`attr_id`),
-  KEY `attr_id_3` (`attr_id`),
-  KEY `attr_type_id` (`attr_type_id`)
+  KEY `attr_type_id` (`attr_type_id`),
+  KEY `attr_group_id` (`attr_group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `attr_object_types`
---
+CREATE TABLE IF NOT EXISTS `attr_groups` (
+  `attr_group_id` int(10) NOT NULL,
+  `name` varchar(300) NOT NULL,
+  `tab` varchar(300) NOT NULL,
+  PRIMARY KEY (`attr_group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `attr_object_types` (
   `attr_id` int(10) NOT NULL,
@@ -50,59 +30,31 @@ CREATE TABLE IF NOT EXISTS `attr_object_types` (
   KEY `object_type_id` (`object_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `objects`
---
-
 CREATE TABLE IF NOT EXISTS `objects` (
   `object_id` int(10) NOT NULL,
   `name` varchar(300) NOT NULL,
   `parent_id` int(10) NOT NULL DEFAULT '0',
   `object_type_id` int(10) NOT NULL,
   PRIMARY KEY (`object_id`),
-  UNIQUE KEY `id` (`object_id`),
-  UNIQUE KEY `id_2` (`object_id`),
   KEY `object_type_id` (`object_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `object_types`
---
 
 CREATE TABLE IF NOT EXISTS `object_types` (
   `object_type_id` int(10) NOT NULL,
   `name` varchar(300) NOT NULL,
   `parent_id` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`object_type_id`),
-  UNIQUE KEY `object_type_id` (`object_type_id`)
+  PRIMARY KEY (`object_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `params`
---
 
 CREATE TABLE IF NOT EXISTS `params` (
   `attr_id` int(10) NOT NULL,
   `object_id` int(10) NOT NULL,
   `value` varchar(1000) NOT NULL,
-  `date_value` date DEFAULT NULL,
   KEY `object_id` (`object_id`),
   KEY `attr_id` (`attr_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `references`
---
-
-CREATE TABLE IF NOT EXISTS `references` (
+CREATE TABLE IF NOT EXISTS `referencess` (
   `attr_id` int(10) NOT NULL,
   `object_id` int(10) NOT NULL,
   `reference` int(10) NOT NULL,
@@ -111,9 +63,12 @@ CREATE TABLE IF NOT EXISTS `references` (
   KEY `reference` (`reference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 --
--- Constraints for dumped tables
+-- Constraints for table `attributes`
 --
+ALTER TABLE `attributes`
+  ADD CONSTRAINT `attributes_ibfk_1` FOREIGN KEY (`attr_group_id`) REFERENCES `attr_groups` (`attr_group_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `attr_object_types`
@@ -135,13 +90,15 @@ ALTER TABLE `params`
   ADD CONSTRAINT `params_ibfk_1` FOREIGN KEY (`attr_id`) REFERENCES `attributes` (`attr_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `params_ibfk_2` FOREIGN KEY (`object_id`) REFERENCES `objects` (`object_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
+  
 --
--- Constraints for table `references`
+-- Constraints for table `referencess`
 --
-ALTER TABLE `references`
-  ADD CONSTRAINT `references_ibfk_3` FOREIGN KEY (`reference`) REFERENCES `objects` (`object_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `references_ibfk_1` FOREIGN KEY (`attr_id`) REFERENCES `attributes` (`attr_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `references_ibfk_2` FOREIGN KEY (`object_id`) REFERENCES `objects` (`object_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE `referencess`
+  ADD CONSTRAINT `referencess_ibfk_3` FOREIGN KEY (`reference`) REFERENCES `objects` (`object_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `referencess_ibfk_1` FOREIGN KEY (`attr_id`) REFERENCES `attributes` (`attr_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `referencess_ibfk_2` FOREIGN KEY (`object_id`) REFERENCES `objects` (`object_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

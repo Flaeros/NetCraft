@@ -3,6 +3,7 @@ package com.netcraft.hibernate.service;
 import com.netcraft.model.NCObject;
 import com.netcraft.hibernate.DAO.ObjectDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 @Service
 public class ObjectServiceImpl implements ObjectService {
 
+    @Qualifier("ObjectDAO")
     @Autowired
     ObjectDAO objectDAO;
 

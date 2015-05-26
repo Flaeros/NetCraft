@@ -3,6 +3,7 @@ package com.netcraft.hibernate.service;
 import com.netcraft.hibernate.DAO.AttrGroupDAO;
 import com.netcraft.model.AttrGroup;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 public class AttrGroupServiceImpl implements AttrGroupService{
 
 
+    @Qualifier("AttrGroupDAO")
     @Autowired
     AttrGroupDAO attrGroupDAO;
 
