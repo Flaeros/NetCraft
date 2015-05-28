@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -29,18 +30,13 @@ public class TestController {
 
     @ModelAttribute
     public void addingCommonObjects(Model model1){
-        model1.addAttribute("headerMsg", "Hello I am Header!");
+        model1.addAttribute("title", "Test Page!");
     }
 
 
     @RequestMapping(value = "/test")
-    public ModelAndView test() throws SQLException {
+    public ModelAndView main() throws SQLException {
         ModelAndView modelAndView = new ModelAndView("testpage");
-
-        System.out.println("[TestController] objectService = " + objectService);
-        System.out.println("[TestController] attributeService = " + attributeService);
-        System.out.println("[TestController] paramService = " + paramService);
-        System.out.println("[TestController] referenceService = " + referenceService);
 
         NCObject object = objectService.getObject(1);
         Attribute attribute = attributeService.getAttribute(1);
@@ -49,11 +45,8 @@ public class TestController {
         Reference reference = referenceService.getReference(attribute.getAttr_id(), object.getObject_id());
         AttrGroup attrGroup = attrGroupService.getAttrGroup(1);
 
-        System.out.println("[TestController] object = " + object.getName());
-        System.out.println("[TestController] attribute = " + attribute.getName());
-        System.out.println("[TestController] param = " + param.getValue());
-        System.out.println("[TestController] reference = " + reference.getReference());
-        System.out.println("[TestController] attrGroup = " + attrGroup.getName());
+        List<ObjectType> parentTypesList = objectTypeService.getParentTypes(3);
+        List<ObjectType> childTypesList = objectTypeService.getChildTypes(1);
 
         modelAndView.addObject("object", object);
         modelAndView.addObject("objectType", objectType);
@@ -61,6 +54,8 @@ public class TestController {
         modelAndView.addObject("param2", param);
         modelAndView.addObject("reference", reference);
         modelAndView.addObject("attrGroup", attrGroup);
+        modelAndView.addObject("parentTypesList", parentTypesList);
+        modelAndView.addObject("childTypesList", childTypesList);
 
         System.out.println("[TestController] DONE");
 

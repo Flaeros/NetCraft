@@ -1,9 +1,10 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Hello test Hibernate&Spring!</title>
-</head>
+
+<jsp:include page="header.jsp" />
+
+
+<div id="test">
 <p>
   <h1>Flaeros here.</h1>
   <h3>Object Test: ${object.object_id} ${object.name} ${object.parent_id} ${object.object_type_id} </h3>
@@ -38,7 +39,19 @@
     ${reference1.reference}
   </c:forEach>
 </p>
+    <p>
+        <h3>Child/Parent test:</h3>
+        Parents:<br/>
+        <c:forEach items="${parentTypesList}" var="type1">
+            ${type1.name}<br/>
+        </c:forEach>
+        Childs:<br/>
+        <c:forEach items="${childTypesList}" var="type2">
+            ${type2.name}<br/>
+        </c:forEach>
+    </p>
+
+</div>
 
 
-</body>
-</html>
+<jsp:include page="footer.jsp" />

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ObjectTypeServiceImpl implements ObjectTypeService {
@@ -34,5 +36,26 @@ public class ObjectTypeServiceImpl implements ObjectTypeService {
     @Transactional
     public void deleteObjectType(ObjectType objectType) throws SQLException {
         objectTypeDAO.deleteObjectType(objectType);
+    }
+
+    @Transactional
+    public List<ObjectType> getChildTypes(long object_type_id) throws SQLException {
+        return objectTypeDAO.getChildTypes(object_type_id);
+    }
+
+    @Transactional
+    public List<ObjectType> getParentTypes(long object_type_id) throws SQLException{
+        ObjectType objectType = getObjectType(object_type_id);
+        long current_id = objectType.getParent_id();
+
+        List<ObjectType> typesList= new ArrayList<ObjectType>();
+        while (current_id != 0)
+        {
+            System.out.println("current_id = " + current_id);
+            ObjectType currentType = getObjectType(current_id);
+            typesList.add(currentType);
+            current_id = currentType.getParent_id();
+        }
+        return typesList;
     }
 }

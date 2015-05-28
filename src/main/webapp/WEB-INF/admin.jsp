@@ -1,13 +1,22 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div style="width:100%; position: absolute">
-  <div style="margin: auto; width: 20%; height: 20%;">
-    <p><h1>Hi I'm Adminko!</h1></p>
+  <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+  <jsp:include page="header.jsp" />
+
+  <div id="main">
+    <div id="left">
+      <p> TODO: current path (breadcrumbs) </p>
+      <p> TODO: List of object types</p>
+      <p>Object Type to show: ${object_type}</p>
+    </div>
+    <div id="right">
+      <div id="upper">
+        <p> TODO: list of attributes</p>
+      </div>
+      <div id="bottom">
+        <p> TODO: parameters of attribute</p>
+      </div>
+    </div>
   </div>
-</div>
-</body>
-</html>
+
+
+  <jsp:include page="footer.jsp" />

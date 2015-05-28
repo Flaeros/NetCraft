@@ -9,17 +9,16 @@ import org.springframework.web.servlet.ModelAndView;
 import java.sql.SQLException;
 
 @Controller
-public class MainPage {
-
+public class Application {
 
     @ModelAttribute
     public void addingCommonObjects(Model model1){
-        model1.addAttribute("title", "Main Page!");
+        model1.addAttribute("title", "Application Page!");
     }
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/index")
     public ModelAndView test() throws SQLException {
-        ModelAndView modelAndView = new ModelAndView("main");
+        ModelAndView modelAndView = new ModelAndView("index");
 
         return modelAndView;
     }
