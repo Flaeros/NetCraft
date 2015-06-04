@@ -18,7 +18,7 @@ public class Attribute implements Serializable{
     private long attr_type_id;
     @Column
     private String name;
-    @Column
+    @Column(nullable = true)
     private long attr_group_id;
 
 

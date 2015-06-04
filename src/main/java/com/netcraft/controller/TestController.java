@@ -45,8 +45,11 @@ public class TestController {
         Reference reference = referenceService.getReference(attribute.getAttr_id(), object.getObject_id());
         AttrGroup attrGroup = attrGroupService.getAttrGroup(1);
 
-        List<ObjectType> parentTypesList = objectTypeService.getParentTypes(3);
+        List<ObjectType> parentTypesList = objectTypeService.getParentTypes(2);
         List<ObjectType> childTypesList = objectTypeService.getChildTypes(1);
+
+        //AttrObjectTypeBasic attrObjectTypeBasic= attrObjectTypeBasicService.getAttrObjectTypeBasic(1,1);
+        //System.out.println("attrObjectTypeBasic = " + attrObjectTypeBasic.getAttr_id() + " " + attrObjectTypeBasic.getObject_type_id());
 
         modelAndView.addObject("object", object);
         modelAndView.addObject("objectType", objectType);
@@ -56,6 +59,7 @@ public class TestController {
         modelAndView.addObject("attrGroup", attrGroup);
         modelAndView.addObject("parentTypesList", parentTypesList);
         modelAndView.addObject("childTypesList", childTypesList);
+        //modelAndView.addObject("attrObjectTypeBasic", attrObjectTypeBasic);
 
         System.out.println("[TestController] DONE");
 

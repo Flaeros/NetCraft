@@ -11,7 +11,7 @@ public class Reference {
     ReferencePK referencePK;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="attr_id", insertable = false, updatable = false)
+    @JoinColumn(name="attr_id", nullable = true, insertable = false, updatable = false)
     private Attribute attribute;
 
     @ManyToOne(fetch = FetchType.EAGER)

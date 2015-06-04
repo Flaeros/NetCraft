@@ -45,6 +45,9 @@ public class ObjectTypeServiceImpl implements ObjectTypeService {
 
     @Transactional
     public List<ObjectType> getParentTypes(long object_type_id) throws SQLException{
+        if(object_type_id == 0)
+            return null;
+
         ObjectType objectType = getObjectType(object_type_id);
         long current_id = objectType.getParent_id();
 

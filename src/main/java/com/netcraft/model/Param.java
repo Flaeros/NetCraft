@@ -11,11 +11,11 @@ public class Param {
     @EmbeddedId
     ParamPK paramPK;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="attr_id", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="attr_id", nullable = true, insertable = false, updatable = false)
     private Attribute attribute;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="object_id", insertable = false, updatable = false)
     private NCObject ncObject;
 

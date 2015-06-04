@@ -6,7 +6,7 @@
   <div id="main">
     <p><h1>Flaeros Main!</h1></p>
     <p>AdminTool:<br/>
-      <a href="admin">Administration Console</a>
+      <a href="admin/">Administration Console</a>
     </p>
     <p>Framework:<br/>
       <a href="index">Main Framework</a>

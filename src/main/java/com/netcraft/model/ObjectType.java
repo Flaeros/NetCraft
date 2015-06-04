@@ -1,5 +1,7 @@
 package com.netcraft.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -11,7 +13,8 @@ public class ObjectType implements Serializable{
 
     @Id
     @Column
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     private long object_type_id;
 
     @Column
