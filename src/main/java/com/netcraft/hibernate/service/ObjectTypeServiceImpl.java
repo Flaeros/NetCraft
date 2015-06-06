@@ -34,6 +34,11 @@ public class ObjectTypeServiceImpl implements ObjectTypeService {
     }
 
     @Transactional
+    public List<ObjectType> getAllTypes() throws SQLException {
+        return objectTypeDAO.getAllTypes();
+    }
+
+    @Transactional
     public void deleteObjectType(ObjectType objectType) throws SQLException {
         objectTypeDAO.deleteObjectType(objectType);
     }

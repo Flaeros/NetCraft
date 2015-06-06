@@ -47,7 +47,7 @@ body div{
 }
 #upper .attr_div{
 	display: inline-block;
-	width: 100%;
+	width: 98%;
 }
 .attr_div:hover{
 	background-color: #DDD;

@@ -12,7 +12,8 @@
   <div id="wrapper">
     <div id="header">
       <h3><a href="/JavaWebFramework/">Home</a> ${title}</h3>
-      <button onclick="PopUpShow();"> New </button>
+      <button onclick="create_OT();"> New </button>
+      <button onclick="edit_OT(${object_type_id});"> Edit </button>
       <c:if test="${parentTypes == null}">
         <a href="/JavaWebFramework/admin/0">Root</a>
       </c:if>

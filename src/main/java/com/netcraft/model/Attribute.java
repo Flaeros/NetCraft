@@ -11,7 +11,8 @@ import java.util.Set;
 public class Attribute implements Serializable{
     @Id
     @Column
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     private long attr_id;
 
     @Column
@@ -34,11 +35,12 @@ public class Attribute implements Serializable{
     public Attribute() {
     }
 
-    public Attribute(long attr_type_id, String name, Set<ObjectType> objectTypes) {
+    public Attribute(long attr_type_id, String name, Set<ObjectType> objectTypes, long attr_group_id) {
 
         this.attr_type_id = attr_type_id;
         this.name = name;
         this.objectTypes = objectTypes;
+        this.attr_group_id = attr_group_id;
     }
 
     public String getName() {
